@@ -1,5 +1,8 @@
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import Navber from "./components/Navber";
+import Tost from "./components/Tost";
+
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -18,12 +21,34 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
+    <html lang="en" data-theme="light" data-arp="">
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        {children}
+
+
+        <Navber></Navber>
+        <div className="max-w-[1400px] mx-auto">
+
+
+          {children}
+
+          <Tost></Tost>
+
+
+        </div>
+
+
+        <footer className="bg-[#234C6A] text-white py-6 text-center">
+          © 2025 Your Company. All rights reserved.
+        </footer>
+
+
+
+
       </body>
+
+
     </html>
   );
 }
