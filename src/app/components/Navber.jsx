@@ -1,11 +1,27 @@
+
+"use client"
+import { signOut, useSession } from 'next-auth/react';
 import Link from 'next/link';
 import React from 'react';
 
 const Navber = () => {
+
+
+    const { data: session, status } = useSession()
+    console.log("session", session, status)
+
+
+    const isLogin = status == 'authenticated' ? <ul className=' flex gap-2'>
+
+        <li  className="max-w-[100px] px-2 py-1 rounded-md bg-white text-black">Account</li>
+        <li  onClick={() => signOut()} className="px-2 py-1 cursor-pointer max-w-[100px]   border border-white text-white rounded-md  ">Logout</li>
+    </ul> : <><Link href="/Login" className="max-w-[100px] px-2 py-1 rounded-md bg-white text-black">Login</Link>
+        <Link href="/SignUp" className="px-2 py-1 max-w-[100px]   border border-white text-white rounded-md  ">Register</Link></>
+
     return (
         <div className="sticky top-0 z-40 bg-[#234C6A] text-white">
             <div className="navbar max-w-[1400px] mx-auto shadow-sm">
- 
+
                 <div className="navbar-start">
                     <div className="dropdown">
                         <div tabIndex={0} role="button" className="lg:hidden">
@@ -35,10 +51,13 @@ const Navber = () => {
                     </ul>
                 </div>
 
-           
+
                 <div className="navbar-end space-x-4">
-                    <Link href="/Login" className="max-w-[100px] px-2 py-1 rounded-md bg-white text-black">Login</Link>
-                    <Link href="/SignUp" className="px-2 py-1 max-w-[100px]   border border-white text-white rounded-md  ">Register</Link>
+
+
+                    {
+                        isLogin
+                    }
                 </div>
             </div>
         </div>

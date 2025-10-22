@@ -1,4 +1,4 @@
-
+"use server"
 import Image from 'next/image';
 import { FaStar } from "react-icons/fa";
 import { dbConnnection } from '../lib/dbConnect';

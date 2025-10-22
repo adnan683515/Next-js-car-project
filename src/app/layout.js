@@ -2,6 +2,8 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Navber from "./components/Navber";
 import Tost from "./components/Tost";
+import { SessionProvider } from "next-auth/react";
+import NextAuthProvider from "@/Providers/NextAuthProvider";
 
 
 const geistSans = Geist({
@@ -27,21 +29,27 @@ export default function RootLayout({ children }) {
       >
 
 
-        <Navber></Navber>
-        <div className="max-w-[1400px] mx-auto">
+
+        <NextAuthProvider>
+          <Navber></Navber>
+          <div className="max-w-[1400px] mx-auto">
 
 
-          {children}
 
-          <Tost></Tost>
-
-
-        </div>
+            {children}
 
 
-        <footer className="bg-[#234C6A] text-white py-6 text-center">
-          © 2025 Your Company. All rights reserved.
-        </footer>
+            <Tost></Tost>
+
+
+          </div>
+
+
+          <footer className="bg-[#234C6A] text-white py-6 text-center">
+            © 2025 Your Company. All rights reserved.
+          </footer>
+        </NextAuthProvider>
+
 
 
 
